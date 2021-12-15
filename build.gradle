@@ -25,6 +25,8 @@ allprojects {
 	group "org.springframework.boot"
 
 	repositories {
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
 		mavenCentral()
 		if (version.contains('-')) {
 			maven { url "https://repo.spring.io/milestone" }
@@ -36,5 +38,14 @@ allprojects {
 
 	configurations.all {
 		resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+	}
+}
+
+subprojects {
+	tasks.withType(Javadoc).all {
+		enabled = false
+	}
+	tasks.withType(Test).all {
+		enabled = false
 	}
 }
